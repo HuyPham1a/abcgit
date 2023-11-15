@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chao theo thoi gian</title>
+        <style>
+            .greeting {
+                font-size: 24px;
+            }
+            .morning{
+                color: green;
+            }
+            .afternoon {
+                color: blue;
+            }
+            .evening{
+                color: red;
+            }
+            .seconds span{
+                animation: changeColorSecond 2s linear infinite;
+            }
+            @keyframes changeColorSecond {
+                0%, 100%{
+                    color: red;
+
+                }
+                50% {
+                    color: blue;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="greeting" class="greeting">xin chao</div>
+        <p id="time"> Thoi gian hien tai se duoc hien thi o day</p>
+        <div class="seconds">giay: <span>0</span></div>
+        <script>
+            function updateGreeting(){
+                const greetingElement = document.getElementById('greeting');
+                const timeElement = document.getElementById('time');
+                const secondsElement = document.querySelector('.second span');
+                const currentTime = new Date();
+                const currentHour = currentTime.getHours();
+                // const currentHour1; // phai khoi tao gia tri cho const
+                // const currentHout; // Khong duoc khai bao lai trong cung block
+                let greeting = '';
+                let className = '' ;
+                // let className1; // khong can phai khoi tao khi khai bao
+                // let className; // khong duoc kha bao lai
+
+                if ( currenHour >= 5 && currentHour < 12) {
+                    greeting = ' chao buoi sang';
+                    className = ' morning';
+
+                } else if (currentHour >= 12 && currentHour < 18) {
+                    greeting = 'Chao buoi chieu';
+                    className = 'afternoon';
+
+                } else {
+                    greeting ='chaob buoi toi';
+                    className = ' evening';
+
+                }
+                greetingElement.textContent = greeting; // thay doi noi dung
+                greetingElement.classNmae = className; // thay doi css
+
+                // const timeString = bay gio la: ${currenTime.getHours()}:${String(currentTime.getMinutes()).padStar(2,'0')}: ${String(currentTimr.getSeconds()).padStart(2, '0')}`;
+                const timeString = `Bay gio la: ${currentTime.getHours()}:${String(currentTime.getMinutes())}:${String(currentTime.getSeconds())}`;
+                const timeContent = `Bay gio la: ${currentTime}`;
+                timeElement.textContent = timeString;
+                // timeElement.textContent = timeContent;
+                secondsElement.textContent = currentTime.getSeconds();
+
+
+            }
+            // goi ham cap nhat moi giay
+            setInterval(updateGreeting, 1000);
+
+            // cap nhat lan dau khi tai trang
+            updateGreeting();
+        </script>
+        <p id="text" style="color: blue;"> van ban nay dang thay doi mau</p>
+        <script>
+            function changeColor() {
+                const textElement = document.getElementById('text');
+                const currentColor = textElement.style.color;
+
+                if (currentColor === 'blue'){
+                    textElement.style.color = 'red';
+                } else {
+                    textElement.style.color = 'blue';
+                }   
+                
+            }
+            //goi ham thay doi mau moi giay
+            setInterval(changeColor, 1000);
+        </script>
+        
+    </body>
+</html>
